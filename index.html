@@ -11,7 +11,61 @@
             font-weight: bold;
         }
     </style>
+   
+</head>
+<body onload="displayTestParam()">
+    <div id="output" class="big-red-text"></div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>External ID Verification Service Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 100%; /* Buttons will occupy the full width of the container */
+            margin-bottom: 10px;
+        }
+        .red-button {
+            background-color: red;
+        }
+        .blue-button {
+            background-color: blue;
+        }
+        .big-red-text {
+            color: red;
+            font-size: 3em;
+            font-weight: bold;
+        }
+    </style>
     <script>
+        function handleButtonClick(url) {
+            window.location.href = url; // Redirect to the given URL in the same tab
+        }
         function displayTestParam() {
             const urlParams = new URLSearchParams(window.location.search);
             const testParam = urlParams.get('test');
@@ -24,6 +78,12 @@
     </script>
 </head>
 <body onload="displayTestParam()">
+    <h1>Payment Service Simulator</h1>
     <div id="output" class="big-red-text"></div>
+    <div class="button-container">
+        <p><button class="button green-button" onclick="handleButtonClick('https://www.facebook.com/carrier_esim_apis/payments/callback?paymentStatus=COMPLETED')">Simulate Payment success</button></p>
+         <p><button class="button blue-button" onclick="handleButtonClick('https://www.facebook.com/carrier_esim_apis/payments/callback?paymentStatus=CANCELLED')">Simulate Payment cancel</button></p>
+        <p><button class="button red-button" onclick="handleButtonClick('https://www.facebook.com/carrier_esim_apis/payments/callback?paymentStatus=ERROR')">Simulate Payment failure</button></p>
+    </div>
 </body>
 </html>
